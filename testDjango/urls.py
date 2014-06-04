@@ -4,17 +4,18 @@ from django.contrib import admin
 admin.autodiscover()
 
 # /home
-# /account
-# 	/orderhistory
+# /accounts
+#     /profile
+#     /login
+#     /logout
+#     /register
+#     /orders/$oid
+#     /orderhistory
 # /browse
 # 	/search/$keyword
-# /product/$pid
-# /order/$oid
+# /products/$pid
 # /checkout
 # /payment
-# /login
-# /logout
-# /register
 # /contact
 
 urlpatterns = patterns('',
@@ -22,8 +23,15 @@ urlpatterns = patterns('',
     # url(r'^$', 'testDjango.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', include('pages.urls')),
-    url(r'^home/', include('pages.urls')),
+    url(r'^$', include('products.urls')),
+    url(r'^product/', include('products.urls')),
+
+    url(r'^cart/', 'testDjango.views.cart'),
+    url(r'^contact/', 'testDjango.views.contact'),
+    url(r'^checkout/', 'testDjango.views.checkout'),
+    url(r'^payment/', 'testDjango.views.payment'),
+
+    url(r'^accounts/', include('accounts.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 )
