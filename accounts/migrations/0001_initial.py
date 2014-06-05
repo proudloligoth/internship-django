@@ -6,12 +6,12 @@ from django.db import models
 
 
 class Migration(SchemaMigration):
-
     def forwards(self, orm):
         # Adding model 'Cart'
         db.create_table('accounts_cart', (
             ('cart_id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('product_id', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['products.Product'], unique=True)),
+            ('product_id',
+             self.gf('django.db.models.fields.related.OneToOneField')(to=orm['products.Product'], unique=True)),
             ('quantity', self.gf('django.db.models.fields.IntegerField')()),
             ('cost', self.gf('django.db.models.fields.DecimalField')(decimal_places=2, max_digits=10)),
         ))
@@ -54,7 +54,8 @@ class Migration(SchemaMigration):
         # Adding model 'Customer_Order'
         db.create_table('accounts_customer_order', (
             ('order_id', self.gf('django.db.models.fields.IntegerField')(primary_key=True)),
-            ('customer_id', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['accounts.User'], unique=True)),
+            ('customer_id',
+             self.gf('django.db.models.fields.related.OneToOneField')(to=orm['accounts.User'], unique=True)),
             ('product', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['accounts.Cart'])),
             ('status', self.gf('django.db.models.fields.CharField')(max_length=10)),
             ('total', self.gf('django.db.models.fields.DecimalField')(decimal_places=2, max_digits=10)),
@@ -94,12 +95,14 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Cart'},
             'cart_id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'cost': ('django.db.models.fields.DecimalField', [], {'decimal_places': '2', 'max_digits': '10'}),
-            'product_id': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['products.Product']", 'unique': 'True'}),
+            'product_id': (
+            'django.db.models.fields.related.OneToOneField', [], {'to': "orm['products.Product']", 'unique': 'True'}),
             'quantity': ('django.db.models.fields.IntegerField', [], {})
         },
         'accounts.customer_order': {
             'Meta': {'object_name': 'Customer_Order'},
-            'customer_id': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['accounts.User']", 'unique': 'True'}),
+            'customer_id': (
+            'django.db.models.fields.related.OneToOneField', [], {'to': "orm['accounts.User']", 'unique': 'True'}),
             'order_id': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True'}),
             'product': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['accounts.Cart']"}),
             'status': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
@@ -107,8 +110,10 @@ class Migration(SchemaMigration):
         },
         'accounts.user': {
             'Meta': {'object_name': 'User'},
-            'address': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['accounts.Address']", 'symmetrical': 'False'}),
-            'cart': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['accounts.Cart']", 'unique': 'True'}),
+            'address': ('django.db.models.fields.related.ManyToManyField', [],
+                        {'to': "orm['accounts.Address']", 'symmetrical': 'False'}),
+            'cart': (
+            'django.db.models.fields.related.OneToOneField', [], {'to': "orm['accounts.Cart']", 'unique': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'unique': 'True', 'max_length': '30'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
