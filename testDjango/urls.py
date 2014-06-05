@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', include('products.urls')),
-    url(r'^product/', include('products.urls')),
+    url(r'^products/', include('products.urls')),
 
     url(r'^cart/', 'testDjango.views.cart'),
     url(r'^contact/', 'testDjango.views.contact'),
