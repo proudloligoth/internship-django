@@ -1,15 +1,25 @@
 from django.db import models
+
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 
 from products.models import Product
 
 
+class Cart(models.Model):
+    cart_id = models.AutoField(primary_key=True)
+    # customer_id = models.OneToOneField(User)
+    product_id = models.OneToOneField(Product)
+    quantity = models.IntegerField()
+    cost = models.DecimalField(decimal_places=2, max_digits=10)
+
+
 class Address(models.Model):
-    street = models.CharField(max_length=225)
-    city = models.CharField(max_length=225)
-    state = models.CharField(max_length=225)
-    country = models.CharField(max_length=225)
-    postcode = models.CharField(max_length=225)
+    number = models.IntegerField(max_length=255)
+    street = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    postcode = models.CharField(max_length=255)
 
 
 class User(AbstractBaseUser):
@@ -19,6 +29,7 @@ class User(AbstractBaseUser):
     last_name = models.CharField(max_length=20)
     address = models.ManyToManyField(Address)
     phone = models.IntegerField()
+    cart = models.OneToOneField(Cart)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -48,15 +59,15 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def order(self):
+        pass
+        # cur cart to order
+        # user's cart point to new empty cart
+
 
 class Customer_Order(models.Model):
     order_id = models.IntegerField(primary_key=True)
-    customer_id = models.ForeignKey('User')
+    customer_id = models.OneToOneField('User')
+    product = models.ForeignKey('Cart')
     status = models.CharField(max_length=10)
-    total = models.FloatField()
-
-
-class Customer_Order_Product(models.Model):
-    order_id = models.ForeignKey('Customer_Order')
-    product_id = models.ForeignKey('products.Product', primary_key=True)
-    quantity = models.IntegerField()
+    total = models.DecimalField(decimal_places=2, max_digits=10)
