@@ -27,7 +27,7 @@ class User(AbstractBaseUser):
     # first_name = models.CharField(max_length=20)
     # last_name = models.CharField(max_length=20)
     address = models.ManyToManyField(Address)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=10)
     cart = models.OneToOneField(Cart)
 
     USERNAME_FIELD = 'email'
