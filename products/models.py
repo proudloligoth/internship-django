@@ -7,3 +7,6 @@ class Product(models.Model):
     product_info = models.CharField(max_length=200)
     product_price = models.DecimalField(decimal_places=2, max_digits=10)
     available = models.CharField(max_length=20)
+
+    def __str__(self):
+        return "id: " + str(self.product_id) + " name: " + self.product_name + " price: " + self.product_info

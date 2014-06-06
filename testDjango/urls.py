@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     url(r'^contact/', 'testDjango.views.contact'),
     url(r'^checkout/', 'testDjango.views.checkout'),
     url(r'^payment/', 'testDjango.views.payment'),
+    url(r'^search/(?P<keyword>\w+)', 'testDjango.views.search'),
 
     url(r'^accounts/', include('accounts.urls')),
 

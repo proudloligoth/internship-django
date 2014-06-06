@@ -22,10 +22,10 @@ class Address(models.Model):
 
 
 class User(AbstractBaseUser):
-    id = models.AutoField(primary_key=True)
-    email = models.EmailField(max_length=30, unique=True)
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
+    # id = models.AutoField(primary_key=True)
+    # email = models.EmailField(max_length=30, unique=True)
+    # first_name = models.CharField(max_length=20)
+    # last_name = models.CharField(max_length=20)
     address = models.ManyToManyField(Address)
     phone = models.CharField(max_length=10)
     cart = models.OneToOneField(Cart)
@@ -33,11 +33,11 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    def get_full_name(self):
-        return self.first_name + " " + self.last_name
-
-    def get_short_name(self):
-        return self.first_name
+    # def get_full_name(self):
+    #     return self.first_name + " " + self.last_name
+    #
+    # def get_short_name(self):
+    #     return self.first_name
 
 
 class UserManager(BaseUserManager):

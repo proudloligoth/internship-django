@@ -1,5 +1,7 @@
 from django import forms
+
 from accounts.models import *
+
 
 class ProductListForm(forms.ModelForm):
     product_name = forms.CharField(widget=forms.HiddenInput())
@@ -7,6 +9,7 @@ class ProductListForm(forms.ModelForm):
 
     class Meta:
         model = Product
+
 
 class ProductDetailForm(forms.ModelForm):
     product_id = forms.IntegerField()
