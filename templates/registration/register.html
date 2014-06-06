@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+
+{% block content %}
+
+	<form action="/accounts/register/" method="post">{% csrf_token %}
+		{{ form.non_field_errors }}
+		<div class="fieldWrapper">
+			{{ form.email.errors }}
+			<label for="email">Email:</label>
+			{{ form.email }}
+		</div>
+		<div class="fieldWrapper">
+			{{ form.password1.errors }}
+			<label for="password1">Password1:</label>
+			{{ form.password1 }}
+		</div>
+		<div class="fieldWrapper">
+			{{ form.password2.errors }}
+			<label for="password2">Password2</label>
+			{{ form.password2 }}
+		</div>
+		<p><input type="submit" value="Register"/></p>
+	</form>
+
+{% endblock %}
+
+</body>
+</html>
