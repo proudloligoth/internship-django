@@ -22,9 +22,25 @@
 		</div>
 		<div class="fieldWrapper">
 			{{ form.password2.errors }}
-			<label for="password2">Password2</label>
+			<label for="password2">Password2:</label>
 			{{ form.password2 }}
 		</div>
+		<div class="fieldWrapper">
+			{{ form.first_name.errors }}
+			<label for="first_name">First Name:</label>
+			{{ form.first_name }}
+		</div>
+		<div class="fieldWrapper">
+			{{ form.last_name.errors }}
+			<label for="last_name">Last Name:</label>
+			{{ form.last_name }}
+		</div>
+		<div class="fieldWrapper">
+			{{ form.phone.errors }}
+			<label for="phone">Phone:</label>
+			{{ form.phone }}
+		</div>
+
 		<p><input type="submit" value="Register"/></p>
 	</form>
 

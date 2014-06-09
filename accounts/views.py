@@ -22,7 +22,7 @@ class ProfileUpdateView(UpdateView):
 
 # class RegisterView(View):
 # def get(self, request, *args, **kwargs):
-#         form = RegistrationForm(request)
+# form = RegistrationForm(request)
 #         current_site = get_current_site(request)
 #
 #         context = {
@@ -39,16 +39,16 @@ class ProfileUpdateView(UpdateView):
 #         return HttpResponse("register posted")
 
 def register(request, template_name='registration/register.html',
-          redirect_field_name=REDIRECT_FIELD_NAME,
-          registration_form=RegistrationForm,
-          current_app=None, extra_context=None):
+             redirect_field_name=REDIRECT_FIELD_NAME,
+             registration_form=RegistrationForm,
+             current_app=None, extra_context=None):
     """
     Displays the login form and handles the login action.
     """
     redirect_to = request.REQUEST.get(redirect_field_name, '')
 
     if request.method == "POST":
-        form = registration_form(request, data=request.POST)
+        form = registration_form(data=request.POST)
         if form.is_valid():
 
             # Ensure the user-originating redirection url is safe.
@@ -56,7 +56,9 @@ def register(request, template_name='registration/register.html',
                 redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
 
             # Okay, security check complete. Log the user in.
-            register(request, form.get_user())
+            # cart = Cart()
+            print("test")
+            form.save()
 
             return HttpResponseRedirect(redirect_to)
     else:

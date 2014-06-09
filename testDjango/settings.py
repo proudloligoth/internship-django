@@ -36,9 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south',
     'accounts',
     'products',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,3 +87,5 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = ( os.path.join(BASE_DIR, 'templates'), )
 
 LOGIN_REDIRECT_URL = "/accounts/login/"
+
+AUTH_USER_MODEL = 'accounts.User'

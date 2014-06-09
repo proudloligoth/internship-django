@@ -2,12 +2,14 @@ from django import forms
 
 from .models import User, Address
 
+
 class ProfileDetailForm(forms.ModelForm):
     address = forms.ModelMultipleChoiceField(queryset=Address.objects.all())
-    cart = forms.InlineForeignKeyField(widget=forms.HiddenInput())
+    # cart = forms.InlineForeignKeyField(widget=forms.HiddenInput())
 
     class Meta:
         model = User
+
 
 class ProfileUpdateForm(forms.ModelForm):
     first_name = forms.CharField(max_length=20)
@@ -42,9 +44,11 @@ class RegistrationForm(forms.ModelForm):
                                 widget=forms.PasswordInput,
                                 help_text="Enter the same password as above, for verification.")
 
+    # cart = forms.ModelChoiceField(queryset=Cart.objects.all())
+
     class Meta:
         model = User
-        fields = ("email", "password1", "password2")
+        fields = ("email", "password1", "password2", "first_name", "last_name", "phone")
 
     def clean_email(self):
         # Since User.username is unique, this check is redundant,
@@ -72,6 +76,9 @@ class RegistrationForm(forms.ModelForm):
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
+        user.first_name = self.cleaned_data.get("first_name")
+        user.last_name = self.cleaned_data.get("last_name")
+        user.phone = self.cleaned_data.get("phone")
         if commit:
             user.save()
         return user

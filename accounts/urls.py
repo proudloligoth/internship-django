@@ -4,12 +4,13 @@ from django.contrib.auth.decorators import login_required
 
 from .views import ProfileDetailView, ProfileUpdateView
 
+
 admin.autodiscover()
 
 # /home
 # /accounts
 # /profile
-#     /login
+# /login
 #     /logout
 #     /register
 #     /orders/$oid
