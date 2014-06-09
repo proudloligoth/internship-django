@@ -1,6 +1,6 @@
 from django import forms
 
-from accounts.models import *
+from products.models import *
 
 
 class ProductListForm(forms.ModelForm):

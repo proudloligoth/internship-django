@@ -4,12 +4,13 @@ from django.contrib.auth.decorators import login_required
 
 from .views import ProfileDetailView, ProfileUpdateView
 
+
 admin.autodiscover()
 
 # /home
 # /accounts
 # /profile
-#     /login
+# /login
 #     /logout
 #     /register
 #     /orders/$oid
@@ -26,7 +27,7 @@ urlpatterns = patterns('',
                        # url(r'^$', 'testDjango.views.home', name='home'),
                        # url(r'^blog/', include('blog.urls')),
 
-                       url(r'^profile/', login_required(ProfileDetailView.as_view())),
+                       url(r'^profile/$', login_required(ProfileDetailView.as_view())),
                        url(r'^profile/edit', login_required(ProfileUpdateView.as_view())),
                        url(r'^login/', 'django.contrib.auth.views.login'),
                        url(r'^logout/', login_required('django.contrib.auth.views.logout')),
