@@ -5,7 +5,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.core.mail import send_mail
 
 from django.db import models
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, SiteProfileNotAvailable)
+from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, SiteProfileNotAvailable, PermissionsMixin)
 from django.utils import timezone
 
 from django.utils.http import urlquote
@@ -52,7 +52,7 @@ class UserManager(BaseUserManager):
                                  **extra_fields)
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('email address', unique=True)
     first_name = models.CharField('first name', max_length=30, blank=True)
     last_name = models.CharField('last name', max_length=30, blank=True)
