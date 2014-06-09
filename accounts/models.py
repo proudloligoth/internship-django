@@ -13,7 +13,6 @@ from django.utils.http import urlquote
 
 class Cart(models.Model):
     cart_id = models.AutoField(primary_key=True)
-    # customer_id = models.OneToOneField(User)
     product_id = models.OneToOneField('products.Product')
     quantity = models.IntegerField()
     cost = models.DecimalField(decimal_places=2, max_digits=10)
