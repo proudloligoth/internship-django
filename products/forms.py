@@ -1,6 +1,10 @@
 from django import forms
 
+<<<<<<< HEAD
 from products.models import *
+=======
+from accounts.models import *
+>>>>>>> 3988bb483a692b890a9972ae661314ce133bbb0b
 
 
 class ProductListForm(forms.ModelForm):

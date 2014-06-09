@@ -126,7 +126,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Customer_Order(models.Model):
     order_id = models.IntegerField(primary_key=True)
+<<<<<<< HEAD
     order_date = models.DateTimeField()
+=======
+>>>>>>> 3988bb483a692b890a9972ae661314ce133bbb0b
     customer_email = models.OneToOneField('accounts.User')
     product = models.ForeignKey('accounts.Cart')
     status = models.CharField(max_length=10)

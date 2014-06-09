@@ -35,7 +35,11 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
+<<<<<<< HEAD
         fields = ('email', 'password', 'first_name', 'last_name', 'is_active', 'is_superuser')
+=======
+        fields = ('email', 'password', 'first_name', 'last_name', 'is_active', 'is_admin')
+>>>>>>> 3988bb483a692b890a9972ae661314ce133bbb0b
 
     def clean_password(self):
         return self.initial["password"]
@@ -45,12 +49,21 @@ class UserAdmin(admin2):
     form = UserChangeForm
     add_form = UserCreationForm
 
+<<<<<<< HEAD
     list_display = ('email', 'first_name', 'last_name', 'is_superuser')
     list_filter = ('is_superuser',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name')}),
         ('Permissions', {'fields': ('is_superuser',)}),
+=======
+    list_display = ('email', 'first_name', 'last_name', 'is_admin')
+    list_filter = ('is_admin',)
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Personal info', {'fields': ('first_name', 'last_name')}),
+        ('Permissions', {'fields': ('is_admin',)}),
+>>>>>>> 3988bb483a692b890a9972ae661314ce133bbb0b
     )
     add_fieldsets = (
         (None, {

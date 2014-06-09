@@ -4,8 +4,11 @@ from .models import User, Address
 
 
 class ProfileDetailForm(forms.ModelForm):
+<<<<<<< HEAD
     email = forms.EmailField()
     #first_name = forms.CharField(max_length=)
+=======
+>>>>>>> 3988bb483a692b890a9972ae661314ce133bbb0b
     address = forms.ModelMultipleChoiceField(queryset=Address.objects.all())
     # cart = forms.InlineForeignKeyField(widget=forms.HiddenInput())
 
@@ -14,6 +17,7 @@ class ProfileDetailForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
+<<<<<<< HEAD
 
     error_message = {'duplicate_email': 'A user with thatemail already exits',
         'password_mismatch': 'The two password fields didn\'t match',
@@ -27,10 +31,18 @@ class ProfileUpdateForm(forms.ModelForm):
     new_pwd1 = forms.CharField(label='New password', widget=forms.PasswordInput)
     new_pwd2 = forms.CharField(label='New password confirmation', widget=forms.PasswordInput,
                                 help_text="Enter the same password as above, for verification.")
+=======
+    first_name = forms.CharField(max_length=20)
+    last_name = forms.CharField(max_length=20)
+    email = forms.EmailField(max_length=30)
+    phone = forms.CharField()
+    address = forms.ModelMultipleChoiceField(queryset=Address.objects.all())
+>>>>>>> 3988bb483a692b890a9972ae661314ce133bbb0b
 
     class Meta:
         model = User
 
+<<<<<<< HEAD
     def clean_cur_pwd(self):
         cur_pwd = self.cleaned_data['cur_pwd']
         if cur_pwd and User.password != cur_pwd:
@@ -47,6 +59,8 @@ class ProfileUpdateForm(forms.ModelForm):
                 code='password_mismatch',
             )
         return pwd2
+=======
+>>>>>>> 3988bb483a692b890a9972ae661314ce133bbb0b
 
 class RegistrationForm(forms.ModelForm):
     """
@@ -107,8 +121,12 @@ class RegistrationForm(forms.ModelForm):
         user.phone = self.cleaned_data.get("phone")
         if commit:
             user.save()
+<<<<<<< HEAD
         return user
 
 #cart
 #order
 #order history
+=======
+        return user
+>>>>>>> 3988bb483a692b890a9972ae661314ce133bbb0b
